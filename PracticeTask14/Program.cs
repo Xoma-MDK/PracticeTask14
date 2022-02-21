@@ -20,8 +20,34 @@ namespace PracticeTask14
             }
             return 0;
         }
+        static void image(char Char, int count, bool flag = false) {
+            if (Char == 'Z' && flag == false)
+            {
+                Console.WriteLine(new String(Char, count));
+                flag = true;
+                image(Char, count, flag);
+
+            }
+            else if (Char != 'Z' && flag == false)
+            {
+                Console.WriteLine(new String(Char, count));
+                image((char)((int)(Char) + 1), count - 2, flag);
+
+            }
+            else if (Char != 'A' && flag == true)
+            {
+                Console.WriteLine(new String(Char, count));
+                image((char)((int)(Char) - 1), count + 2, flag);
+
+            }
+            else if (Char == 'A' && flag == true)
+            {
+                Console.WriteLine(new String(Char, count));
+            }
+        }
         static void Main(string[] args)
         {
+            
             Console.Write("Введите n: ");
             int n = int.Parse(Console.ReadLine());
             Console.Write("Введите m: ");
@@ -30,6 +56,7 @@ namespace PracticeTask14
             {
                 Console.WriteLine($"Значение функции Аккермана для неотрицательных чисел {n} и {m}: {A(n, m)}");
             }
+            image('A', 80);
             
         }
     }
